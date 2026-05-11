@@ -5,7 +5,7 @@
       "name": "sadia",
       "email": "sadia@gmail.com",
       "cellNo": "01775911526",
-      "fee": 5000
+      "fee": "1000"
     },
     {
       "name": "moymuna",
@@ -15,5 +15,33 @@
       "id": "rBmJ-2Tj6fc"
     }
   ],
-  "$schema": "./node_modules/json-server/schema.json"
+  "department": [
+    {
+      "id": "1",
+      "name": "physics",
+      "email": "physics@gmail.com"
+    },
+    {
+      "name": "chemistry",
+      "email": "chemistry@gmail.com",
+      "id": "zTtSkolyF1w"
+    },
+    {
+      "id": "35YLPymCkzY",
+      "name": "mathmetics",
+      "email": "math@gmail.com"
+    }
+  ],
+  "teacher":[
+    {
+      "id?":1,
+"name":"emran hossain",
+"email":"emran@gmail.com",
+"designation":"assistent teacher",
+"cellNo":"463746836583",
+
+"departmentId":"1"
+
+    }
+  ]
 }
