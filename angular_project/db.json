@@ -32,16 +32,24 @@
       "email": "math@gmail.com"
     }
   ],
-  "teacher":[
+  "teacher": [
     {
-      "id?":1,
-"name":"emran hossain",
-"email":"emran@gmail.com",
-"designation":"assistent teacher",
-"cellNo":"463746836583",
-
-"departmentId":"1"
-
+      "id?": 1,
+      "name": "emran hossain",
+      "email": "emran@gmail.com",
+      "designation": "assistent teacher",
+      "cellNo": "463746836583",
+      "departmentId": "1",
+      "id": "vlfQsJJ8rpg"
+    },
+    {
+      "name": "tasmia",
+      "email": "tasmia@gmail.conm",
+      "designation": "teacher",
+      "cellNo": "46565767",
+      "departmentId": "1",
+      "id": "SSmcTNcDvDI"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
