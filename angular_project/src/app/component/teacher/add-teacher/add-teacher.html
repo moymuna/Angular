@@ -1,0 +1,103 @@
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-dark text-white">
+            <h3>
+                {{ isEditMode ? 'Edit Teacher' : 'Add Teacher' }}
+            </h3>
+        </div>
+
+        <div class="card-body">
+
+            <form (ngSubmit)="save()">
+
+                <!-- Name -->
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="teacher.name"
+                        name="name"
+                        required
+                    />
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+
+                    <input
+                        type="email"
+                        class="form-control"
+                        [(ngModel)]="teacher.email"
+                        name="email"
+                        required
+                    />
+                </div>
+
+                <!-- Designation -->
+                <div class="mb-3">
+                    <label class="form-label">Designation</label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="teacher.designation"
+                        name="designation"
+                        required
+                    />
+                </div>
+
+                <!-- Cell No -->
+                <div class="mb-3">
+                    <label class="form-label">Cell No</label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="teacher.cellNo"
+                        name="cellNo"
+                        required
+                    />
+                </div>
+
+                <!-- Department -->
+                <div class="mb-3">
+
+                    <label class="form-label">Department</label>
+
+                    <select
+                        class="form-select"
+                        [(ngModel)]="teacher.departmentId"
+                        name="departmentId"
+                        required
+                    >
+
+                        <option value="">Select Department</option>
+
+                        <option
+                            *ngFor="let d of departments"   [value]="d.id" >
+                            {{ d.name }}
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- Button -->
+                <button type="submit" class="btn btn-primary">
+
+                    {{ isEditMode ? 'Update Teacher' : 'Save Teacher' }}
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

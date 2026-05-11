@@ -24,7 +24,7 @@ saveStudent(student:StudentMOdel){
 
 
 // put request
-uodateStudent(student:StudentMOdel):Observable<StudentMOdel>{
+updateStudent(student:StudentMOdel):Observable<StudentMOdel>{
 return this.http.put<StudentMOdel>(this.baseApi+'/'+student.id,student)
 
 }
@@ -34,7 +34,9 @@ deleteStudent(id:string):Observable<void>{
   return this.http.delete<void>(this.baseApi+'/'+id)
 }
 
-
+getById(id:string):Observable<StudentMOdel>{
+  return this.http.get<StudentMOdel>(this.baseApi+'/'+id);
+}
 }
 
 

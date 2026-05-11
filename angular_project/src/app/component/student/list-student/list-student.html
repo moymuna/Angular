@@ -1,0 +1,27 @@
+<div class="container">
+<table class="table table-striped mt-5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Cell</th>
+            <th>Fee</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let s of students">
+            <td>{{s.id}}</td>
+            <td>{{s.name}}</td>
+            <td>{{s.email}}</td>
+            <td>{{s.cellNo}}</td>
+            <td>{{s.fee}}</td>
+            <td>
+                <button class="btn btn-dnager mx-3" (click)="remove(s.id!)">Delete</button>
+                <button class="btn btn-warning mx-3" [routerLink]="['edit/', s.id]"></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
