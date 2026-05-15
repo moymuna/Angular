@@ -1,0 +1,18 @@
+{
+  "users": [],
+  "employees": [
+    {
+      "firstName": "Moymuna Jahan",
+      "lastName": "Sadia",
+      "email": "jahan@gmail.com",
+      "department": "Administretion",
+      "designation": "CEO",
+      "joiningDate": "2020-05-06",
+      "status": "Active",
+      "id": "VwltfQmT5QM"
+    }
+  ],
+  "attendance": [],
+  "leaveRequests": [],
+  "$schema": "./node_modules/json-server/schema.json"
+}
