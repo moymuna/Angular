@@ -1,0 +1,234 @@
+<div class="leave-container">
+  <div class="header-section mb-5">
+    <h2 class="display-5 fw-bold text-gradient">Leave Management</h2>
+    <p class="text-muted">Streamline employee time-off requests and approvals.</p>
+  </div>
+
+  <!-- Alert Message -->
+  <div *ngIf="message" class="alert-toast" [ngClass]="isError ? 'error' : 'success'">
+    <i class="bi" [ngClass]="isError ? 'bi-exclamation-triangle-fill' : 'bi-check-circle-fill'"></i>
+    {{ message }}
+  </div>
+
+  <!-- FORM CARD -->
+  <div class="card glass-card mb-5 border-0 shadow-lg animate-fade-in">
+    <div class="card-body p-4 p-md-5">
+      <div class="d-flex align-items-center mb-4">
+        <div class="icon-box me-3" [ngClass]="isEdit ? 'bg-primary' : 'bg-success'">
+          <i class="bi" [ngClass]="isEdit ? 'bi-pencil-square' : 'bi-calendar-plus-fill'"></i>
+        </div>
+        <h4 class="card-title mb-0">{{ isEdit ? 'Update Leave Request' : 'Submit New Leave Request' }}</h4>
+      </div>
+
+      <form class="row g-4">
+        <!-- Employee Selection -->
+        <div class="col-md-6 col-lg-4">
+          <label class="form-label fw-semibold">Employee</label>
+          <div class="input-group">
+            <span class="input-group-text bg-white border-end-0"><i class="bi bi-person"></i></span>
+            <select
+              class="form-select border-start-0 ps-0"
+              [(ngModel)]="leave.employeeId"
+              name="employeeId"
+              required
+            >
+              <option value="" disabled selected>Select Employee</option>
+              <option *ngFor="let emp of employees" [value]="emp.id">
+                {{ emp.firstName }} {{ emp.lastName }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Leave Type -->
+        <div class="col-md-6 col-lg-4">
+          <label class="form-label fw-semibold">Leave Type</label>
+          <div class="input-group">
+            <span class="input-group-text bg-white border-end-0"><i class="bi bi-tags"></i></span>
+            <select
+              class="form-select border-start-0 ps-0"
+              [(ngModel)]="leave.leaveType"
+              name="leaveType"
+              required
+            >
+              <option value="Sick">Sick Leave</option>
+              <option value="Annual">Annual Leave</option>
+              <option value="Casual">Casual Leave</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Approval Status (Admin Only) -->
+        <div class="col-md-6 col-lg-4">
+          <label class="form-label fw-semibold">Approval Status</label>
+          <div class="input-group">
+            <span class="input-group-text bg-white border-end-0"><i class="bi bi-shield-check"></i></span>
+            <select
+              class="form-select border-start-0 ps-0"
+              [(ngModel)]="leave.approvalStatus"
+              name="approvalStatus"
+              required
+            >
+              <option value="Pending">Pending</option>
+              <option value="Approved">Approved</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Start Date -->
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Start Date</label>
+          <div class="input-group">
+            <span class="input-group-text bg-white border-end-0"><i class="bi bi-calendar-event"></i></span>
+            <input
+              type="date"
+              class="form-control border-start-0 ps-0"
+              [(ngModel)]="leave.startDate"
+              name="startDate"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- End Date -->
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">End Date</label>
+          <div class="input-group">
+            <span class="input-group-text bg-white border-end-0"><i class="bi bi-calendar-check"></i></span>
+            <input
+              type="date"
+              class="form-control border-start-0 ps-0"
+              [(ngModel)]="leave.endDate"
+              name="endDate"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Reason -->
+        <div class="col-12">
+          <label class="form-label fw-semibold">Reason for Leave</label>
+          <textarea
+            class="form-control"
+            rows="3"
+            placeholder="Please provide details about your leave request..."
+            [(ngModel)]="leave.reason"
+            name="reason"
+          ></textarea>
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="col-12 mt-4 d-flex gap-2 justify-content-end">
+          <button
+            type="button"
+            class="btn btn-light px-4"
+            (click)="resetForm()"
+            *ngIf="isEdit || leave.employeeId"
+          >
+            Cancel
+          </button>
+          
+          <button
+            type="button"
+            class="btn btn-save px-5"
+            [ngClass]="isEdit ? 'btn-update' : 'btn-add'"
+            (click)="isEdit ? updateLeave() : addLeave()"
+          >
+            {{ isEdit ? 'Update Request' : 'Submit Request' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- DATA TABLE -->
+  <div class="card glass-card border-0 shadow-lg animate-fade-in delay-1">
+    <div class="card-body p-0">
+      <div class="p-4 d-flex justify-content-between align-items-center border-bottom">
+        <h5 class="mb-0 fw-bold">Recent Leave Applications</h5>
+        <div class="badge bg-soft-primary text-primary px-3 py-2 rounded-pill">
+          Total: {{ leaves.length }} Applications
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="bg-light-subtle">
+            <tr>
+              <th class="ps-4">Employee</th>
+              <th>Type</th>
+              <th>Duration</th>
+              <th>Status</th>
+              <th class="text-end pe-4">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of leaves" class="leave-row">
+              <td class="ps-4">
+                <div class="d-flex align-items-center">
+                  <div class="avatar-sm me-3 bg-soft-primary text-primary">
+                    {{ getEmployeeName(item.employeeId).substring(0, 1) }}
+                  </div>
+                  <div>
+                    <div class="fw-bold text-dark">{{ getEmployeeName(item.employeeId) }}</div>
+                    <small class="text-muted">ID: {{ item.employeeId }}</small>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span class="badge bg-soft-info text-info rounded-pill px-3">{{ item.leaveType }}</span>
+              </td>
+              <td>
+                <div class="d-flex flex-column">
+                  <span class="text-dark fw-medium small">From: {{ item.startDate | date:'shortDate' }}</span>
+                  <span class="text-muted small">To: {{ item.endDate | date:'shortDate' }}</span>
+                </div>
+              </td>
+              <td>
+                <span
+                  class="status-pill"
+                  [ngClass]="{
+                    'status-approved': item.approvalStatus === 'Approved',
+                    'status-pending': item.approvalStatus === 'Pending',
+                    'status-rejected': item.approvalStatus === 'Rejected'
+                  }"
+                >
+                  {{ item.approvalStatus }}
+                </span>
+              </td>
+              <td class="text-end pe-4">
+                <div class="btn-group">
+                  <button
+                    class="btn btn-icon btn-soft-primary"
+                    (click)="editLeave(item)"
+                    title="Edit Request"
+                  >
+                    <i class="bi bi-pencil-fill"></i>
+                  </button>
+                  <button
+                    class="btn btn-icon btn-soft-danger ms-2"
+                    (click)="deleteLeave(item.id)"
+                    title="Delete Request"
+                  >
+                    <i class="bi bi-trash3-fill"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Empty State -->
+            <tr *ngIf="leaves.length === 0">
+              <td colspan="5" class="text-center py-5">
+                <div class="empty-state">
+                  <i class="bi bi-calendar2-x display-4 text-muted"></i>
+                  <p class="mt-3 text-muted">No leave requests found.</p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

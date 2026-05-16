@@ -1,0 +1,195 @@
+:root {
+  --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  --success-gradient: linear-gradient(135deg, #22c55e 0%, #10b981 100%);
+  --danger-gradient: linear-gradient(135deg, #ef4444 0%, #f43f5e 100%);
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --soft-primary: #eef2ff;
+  --soft-success: #f0fdf4;
+  --soft-danger: #fef2f2;
+  --soft-warning: #fffbeb;
+}
+
+.attendance-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.text-gradient {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08) !important;
+}
+
+.icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.form-label {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin-bottom: 0.5rem;
+}
+
+.form-control, .form-select {
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.input-group-text {
+  border-radius: 0.75rem 0 0 0.75rem;
+  border: 1px solid #e5e7eb;
+  color: #9ca3af;
+}
+
+.btn-save {
+  padding: 0.75rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  color: white;
+  border: none;
+  transition: all 0.3s;
+}
+
+.btn-add {
+  background: #4f46e5; /* Indigo */
+}
+
+.btn-update {
+  background: #7c3aed; /* Violet */
+}
+
+.btn-save:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  opacity: 0.9;
+}
+
+/* Table Styles */
+.table thead th {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+  padding: 1.25rem 1rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.attendance-row {
+  transition: background-color 0.2s;
+}
+
+.attendance-row:hover {
+  background-color: #f9fafb !important;
+}
+
+.avatar-sm {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.bg-soft-primary { background: var(--soft-primary); }
+.text-primary { color: #6366f1 !important; }
+.bg-soft-success { background: var(--soft-success); }
+.text-success { color: #10b981 !important; }
+.bg-soft-danger { background: var(--soft-danger); }
+.text-danger { color: #ef4444 !important; }
+
+.status-pill {
+  padding: 0.35rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.status-present { background: var(--soft-success); color: #10b981; }
+.status-late { background: var(--soft-warning); color: #d97706; }
+.status-absent { background: var(--soft-danger); color: #ef4444; }
+
+.btn-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  transition: all 0.2s;
+}
+
+.btn-soft-primary { background: var(--soft-primary); color: #6366f1; }
+.btn-soft-danger { background: #ef4444; color: white; }
+
+.btn-icon:hover {
+  transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.2s; }
+
+/* Alert Toast */
+.alert-toast {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  z-index: 1050;
+  animation: slideIn 0.4s ease forwards;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.alert-toast.success { background: var(--success-gradient); }
+.alert-toast.error { background: var(--danger-gradient); }

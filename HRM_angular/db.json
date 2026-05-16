@@ -6,13 +6,89 @@
       "lastName": "Sadia",
       "email": "jahan@gmail.com",
       "department": "Administretion",
-      "designation": "CEO",
+      "designation": "Super admin",
       "joiningDate": "2020-05-06",
       "status": "Active",
       "id": "VwltfQmT5QM"
+    },
+    {
+      "firstName": "emon",
+      "lastName": "sarkar",
+      "email": "gg@c.c",
+      "department": "IT",
+      "designation": "Employee",
+      "joiningDate": "2026-02-17",
+      "status": "Active",
+      "id": "925ZeoveqNk"
+    },
+    {
+      "firstName": "Rehana",
+      "lastName": "Akter",
+      "email": "rehana@gmail.com",
+      "department": "IT",
+      "designation": "Employee",
+      "joiningDate": "2025-02-03",
+      "status": "Active",
+      "id": "Uow8dVdNlq0"
+    },
+    {
+      "firstName": "Mishkatul",
+      "lastName": "ISlam",
+      "email": "mishkat@gmail.com",
+      "department": "IT",
+      "designation": "Employee",
+      "joiningDate": "",
+      "status": "Active",
+      "id": "b35-2cAf3lA"
+    },
+    {
+      "firstName": "Tanvir",
+      "lastName": "Rahman",
+      "email": "tanvir@gmail.com",
+      "department": "IT",
+      "designation": "employee",
+      "joiningDate": "2026-03-05",
+      "status": "Active",
+      "id": "9E9qD07Z1Tc"
     }
   ],
-  "attendance": [],
-  "leaveRequests": [],
+  "attendance": [
+    {
+      "employeeId": "VwltfQmT5QM",
+      "date": "2026-05-16",
+      "checkInTime": "09:00",
+      "checkOutTime": "",
+      "status": "Present",
+      "id": "CFn4w-zd07o"
+    },
+    {
+      "employeeId": "Uow8dVdNlq0",
+      "date": "2026-05-16",
+      "checkInTime": "09:00",
+      "checkOutTime": "",
+      "status": "Present",
+      "id": "EiXBOiFi7KY"
+    }
+  ],
+  "leaveRequests": [
+    {
+      "employeeId": "VwltfQmT5QM",
+      "leaveType": "Sick",
+      "startDate": "2026-05-16T12:59:59.373Z",
+      "endDate": "2026-05-16T12:59:59.373Z",
+      "reason": "sick",
+      "approvalStatus": "Approved",
+      "id": "XhJlUJxuUdo"
+    },
+    {
+      "employeeId": "Uow8dVdNlq0",
+      "leaveType": "Sick",
+      "startDate": "2026-05-18",
+      "endDate": "2026-05-20",
+      "reason": "sick",
+      "approvalStatus": "Approved",
+      "id": "-L4F93oMCbw"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

@@ -12,20 +12,17 @@ export interface Employee {
 
 
 export interface Attendance {
+  id?:string;
   employeeId: string;
   date: string;
   checkInTime: string;
   checkOutTime?: string; 
-  location?: {
-    latitude: number;
-    longitude: number;
-  };
   status: 'Present' | 'Absent' | 'Late';
 }
 
 
 export interface LeaveRequest {
-  id: string;
+  id?: string;
   employeeId: string;
   leaveType: 'Sick' | 'Annual' | 'Casual';
   startDate: Date;
@@ -36,7 +33,7 @@ export interface LeaveRequest {
 
 
 export interface User {
-  id: string;
+  id?: string;
   username: string;
   role: 'Admin' | 'HR' | 'Employee';
   token?: string; 

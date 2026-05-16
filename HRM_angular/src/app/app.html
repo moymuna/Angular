@@ -1,2 +1,29 @@
+<div class="layout">
+  <header class="topbar">
+    <h1>HRM System</h1>
+    <div class="role-selector">
+      <label for="roleSelect">View As Role: </label>
+      <select id="roleSelect" (change)="changeRole($event)" [value]="(authService.currentRole$ | async)">
+        <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+      </select>
+    </div>
+  </header>
 
-<router-outlet />
+  <div class="container">
+    <aside class="sidebar">
+      <nav>
+        <ul>
+          <ng-container *ngFor="let item of menuItems">
+            <li *ngIf="authService.hasPermission(item.feature)">
+              <a [routerLink]="item.path" routerLinkActive="active-link">{{ item.label }}</a>
+            </li>
+          </ng-container>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

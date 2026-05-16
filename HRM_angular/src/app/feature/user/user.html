@@ -1,0 +1,142 @@
+<div class="container mt-4">
+
+  <!-- FORM -->
+  <div class="card shadow-sm p-3 mb-4">
+
+    <h3 class="text-center mb-3">
+      User Management
+    </h3>
+
+    <form class="row g-3">
+
+      <!-- USERNAME -->
+      <div class="col-md-6">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Username"
+          [(ngModel)]="user.username"
+          name="username"
+        />
+      </div>
+
+      <!-- ROLE -->
+      <div class="col-md-6">
+        <select
+          class="form-select"
+          [(ngModel)]="user.role"
+          name="role"
+        >
+          <option value="Admin">Admin</option>
+          <option value="HR">HR</option>
+          <option value="Employee">Employee</option>
+        </select>
+      </div>
+
+      <!-- TOKEN -->
+      <div class="col-md-12">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Token"
+          [(ngModel)]="user.token"
+          name="token"
+        />
+      </div>
+
+      <!-- BUTTON -->
+      <div class="col-md-12 d-grid">
+
+        <button
+          type="button"
+          class="btn btn-success"
+          *ngIf="!isEdit"
+          (click)="addUser()"
+        >
+          Add User
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          *ngIf="isEdit"
+          (click)="updateUser()"
+        >
+          Update User
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+  <!-- TABLE -->
+  <div class="card shadow-sm p-3">
+
+    <table class="table table-striped table-hover text-center">
+
+      <thead class="table-dark">
+
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Role</th>
+          <th>Token</th>
+          <th>Action</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr *ngFor="let user of users">
+
+          <td>{{ user.id }}</td>
+
+          <td>{{ user.username }}</td>
+
+          <td>
+            <span
+              class="badge"
+              [ngClass]="
+                user.role === 'Admin'
+                  ? 'bg-danger'
+                  : user.role === 'HR'
+                  ? 'bg-warning'
+                  : 'bg-success'
+              "
+            >
+              {{ user.role }}
+            </span>
+          </td>
+
+          <td>{{ user.token }}</td>
+
+          <td>
+
+            <button
+              class="btn btn-warning btn-sm me-2"
+              (click)="editUser(user)"
+            >
+              Edit
+            </button>
+
+            <button
+              class="btn btn-danger btn-sm"
+              (click)="deleteUser(user.id)"
+            >
+              Delete
+            </button>
+
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
